@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Ma Bibliothèque</title>
+
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+
+  <body class="min-h-screen bg-stone-50 text-stone-900">
+    <header class="border-b border-emerald-800 bg-white">
+      <div class="max-w-6xl px-10 py-5">
+        <h1 class="text-3xl font-bold text-emerald-800">Ma Bibliothèque</h1>
+
+        <p class="mt-2 text-stone-600 font-light">
+          Organisez votre collection de livres.
+        </p>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 py-8">
+      <section
+        class="rounded-2xl border border-emerald-800 bg-white p-6 shadow-xl flex justify-between flex-wrap"
+      >
+        <div>
+          <h2 class="text-xl font-bold">Bienvenue dans votre bibliothèque !</h2>
+
+          <p class="mt-2 text-stone-600 font-light">
+            Vous pourrez ajouter, rechercher et gérer vos livres ici.
+          </p>
+        </div>
+
+        <div
+          class="bg-emerald-800 rounded-full text-white flex items-center h-10 w-35 pl-4 mt-2 mr-4"
+        >
+          <button id="ajouter-btn" class="hover:cursor-pointer">
+            ajouter un livre
+          </button>
+        </div>
+      </section>
+      <section
+        class="border border-emerald-800 rounded-2xl bg-white p-6 mt-8 shadow-xl"
+      >
+        <div>
+          <h1 class="font-bold text-3xl text-emerald-800">Mes livres</h1>
+          <br />
+        </div>
+        <div class="grid gap-5 md:grid-cols-2">
+          <!-------------------------- RECHERCHE -------------------------->
+
+          <div>
+            <label
+              for="search-input"
+              class="mb-2 block text-sm font-medium text-stone-700"
+            >
+              Rechercher un livre
+            </label>
+
+            <input
+              id="search-input"
+              type="search"
+              placeholder="Titre ou auteur..."
+              class="w-full rounded-lg border border-stone-300 px-3 py-2.5 outline-none"
+            />
+          </div>
+
+          <!-------------------------------- TRI -------------------------------->
+          <div>
+            <label
+              for="sort-select"
+              class="mb-2 block text-sm font-medium text-stone-700"
+            >
+              Trier par
+            </label>
+
+            <select
+              id="sort-select"
+              class="w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 outline-none"
+            >
+              <option value="title">Titre (A-Z)</option>
+              <option value="author">Auteur (A-Z)</option>
+              <option value="year">Année de publication</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <br />
+
+      <section>
+        <section
+          class="border border-emerald-800 rounded-2xl bg-white p-6 mt-2 shadow-xl"
+        >
+          <div>
+            <h1 class="font-bold text-emerald-800 text-2xl">
+              Ajouter votre livre
+            </h1>
+            <p class="font-light">Écris les détails de ton livre préféré.</p>
+          </div>
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <label for="title" class="mb-2 block text-sm text-stone-700"
+              >Titre
+            </label>
+            <input
+              id="title"
+              class="px-2 rounded-lg border border-stone-300 h-10 outline-none"
+              type="text"
+              placeholder="Enter le Titre"
+            />
+            <label for="author" class="mb-2 block text-sm text-stone-700"
+              >Auteur
+            </label>
+            <input
+              id="author"
+              class="px-2 rounded-lg border border-stone-300 h-10 outline-none"
+              type="text"
+              placeholder="Enter le nom d'auteur"
+            />
+            <label for="Genre" class="mb-2 block text-sm text-shadow-stone-700"
+              >Genre
+            </label>
+            <select
+              id="genrelivre"
+              class="w-80 rounded-lg border border-stone-300 p-2 outline-none"
+            >
+              <option value="text">La Biographie</option>
+              <option value="text">La Romance</option>
+              <option value="text">La Fantasy</option>
+              <option value="text">La Science</option>
+            </select>
+            <label for="calendrier" class="mb-2 block text-sm text-stone-700"
+              >Année
+            </label>
+            <input
+              id="author"
+              class="rounded-lg border border-stone-300 h-10 w-25 p-2 outline-none"
+              type="number"
+              placeholder="2026"
+            />
+            <label for="status" class="mb-2 block text-sm text-stone-700"
+              >status
+            </label>
+            <select id="status" class="rounded-lg border border-stone-300 p-2">
+              <option value="text">to-read</option>
+              <option value="text">reading</option>
+              <option value="text">read</option>
+            </select>
+            <label for="description" class="mb-2 block text-sm text-stone-700"
+              >description
+            </label>
+            <input
+              type="text"
+              class="rounded-lg border border-stone-300 p-2 w-full h-40 outline-none"
+              placeholder="Enter la description de livre"
+            />
+          </div>
+        </section>
+        <br />
+
+        <!----------------- TITRE ET COMPTEUR ----------------->
+
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-bold mb-5">Ma collection</h2>
+          <p
+            id="books-count"
+            class="rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-900 mb-5"
+          >
+            0 livre
+          </p>
+        </div>
+
+        <!-- MESSAGE SI AUCUN LIVRE -->
+        <div
+          id="empty-state"
+          class="rounded-2xl border border-dashed border-stone-400 bg-white px-5 py-12 text-center shadow-xl"
+        >
+          <h3 class="text-lg font-bold text-stone-800">
+            Aucun livre pour le moment
+          </h3>
+
+          <p class="mt-2 text-sm text-stone-600">
+            Ajoutez votre premier livre pour commencer votre collection.
+          </p>
+        </div>
+
+        <!-- LES LIVRES SERONT AFFICHÉS ICI -->
+        <div
+          id="books-list"
+          class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        ></div>
+      </section>
+    </main>
+  </body>
+</html>

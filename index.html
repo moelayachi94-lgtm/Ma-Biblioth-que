@@ -88,74 +88,152 @@
       </section>
       <br />
 
-      <section>
-        <section
-          class="border border-emerald-800 rounded-2xl bg-white p-6 mt-2 shadow-xl"
+      <!-- FORMULAIRE D'AJOUT -->
+<section id="form-ajout" class="mt-2 rounded-2xl border border-emerald-800 bg-white p-6 shadow-xl hidden">
+
+    <div>
+        <h2 class="text-2xl font-bold text-emerald-800">
+            Ajouter votre livre
+        </h2>
+
+        <p class="mt-2 font-light text-stone-600">
+            Écris les détails de ton livre préféré.
+        </p>
+    </div>
+
+    <form id="book-form" class="mt-6 space-y-5">
+
+        <!--------------------------------TITRE & AUTEUR -------------------------------->
+
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+
+            <!-- TITRE -->
+            <div>
+                <label for="title" class="mb-2 block text-sm text-stone-700">
+                    Titre 
+                </label>
+
+                <input
+                    id="title"
+                    name="title"
+                    type="text"
+                    required
+                    placeholder="Entrer le titre"
+                    class="w-full rounded-lg border border-stone-300 px-3 py-2.5 outline-none focus:border-emerald-800"
+                >
+            </div>
+
+            <!-- AUTEUR -->
+            <div>
+                <label for="author" class="mb-2 block text-sm text-stone-700">
+                    Auteur 
+                </label>
+
+                <input
+                    id="author"
+                    name="author"
+                    type="text"
+                    required
+                    placeholder="Entrer le nom d'auteur"
+                    class="w-full rounded-lg border border-stone-300 px-3 py-2.5 outline-none focus:border-emerald-800"
+                >
+            </div>
+
+        </div>
+
+
+        <!-- LIGNE 2 : GENRE + ANNÉE + STATUT -->
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
+
+            <!-- GENRE -->
+            <div>
+                <label for="genre" class="mb-2 block text-sm text-stone-700">
+                    Genre
+                </label>
+
+                <select
+                    id="genre"
+                    name="genre"
+                    class="w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 outline-none focus:border-emerald-800"
+                >
+                    <option value="biography">La Biographie</option>
+                    <option value="romance">La Romance</option>
+                    <option value="fantasy">La Fantasy</option>
+                    <option value="science-fiction">La Science</option>
+                    <option value="other">Autre</option>
+                </select>
+            </div>
+
+            <!-- ANNÉE -->
+            <div>
+                <label for="year" class="mb-2 block text-sm text-stone-700">
+                    Année
+                </label>
+
+                <input
+                    id="year"
+                    name="year"
+                    type="number"
+                    step="1"
+                    placeholder="Ex. 2020"
+                    class="w-full rounded-lg border border-stone-300 px-3 py-2.5 outline-none focus:border-emerald-800"
+                >
+            </div>
+
+            <!-- STATUT -->
+            <div>
+                <label for="status" class="mb-2 block text-sm text-stone-700">
+                    Statut
+                </label>
+
+                <select
+                    id="status"
+                    name="status"
+                    class="w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 outline-none focus:border-emerald-800"
+                >
+                    <option value="to-read">To read</option>
+                    <option value="reading">Reading</option>
+                    <option value="read">Read</option>
+                </select>
+            </div>
+
+        </div>
+
+
+        <!-- LIGNE 3 : DESCRIPTION -->
+        <div>
+            <label for="description" class="mb-2 block text-sm text-stone-700">
+                Description
+            </label>
+
+            <textarea
+                id="description"
+                name="description"
+                rows="4"
+                placeholder="Entrer la description du livre"
+                class="w-full resize-y rounded-lg border border-stone-300 p-3 outline-none focus:border-emerald-800"
+            ></textarea>
+        </div>
+
+
+        <!-- BOUTON -->
+        <button
+            id="submit-button"
+            type="submit"
+            class="rounded-full bg-emerald-800 px-6 py-3 font-semibold text-white hover:bg-emerald-900 cursor-pointer"
         >
-          <div>
-            <h1 class="font-bold text-emerald-800 text-2xl">
-              Ajouter votre livre
-            </h1>
-            <p class="font-light">Écris les détails de ton livre préféré.</p>
-          </div>
-          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <label for="title" class="mb-2 block text-sm text-stone-700"
-              >Titre
-            </label>
-            <input
-              id="title"
-              class="px-2 rounded-lg border border-stone-300 h-10 outline-none"
-              type="text"
-              placeholder="Enter le Titre"
-            />
-            <label for="author" class="mb-2 block text-sm text-stone-700"
-              >Auteur
-            </label>
-            <input
-              id="author"
-              class="px-2 rounded-lg border border-stone-300 h-10 outline-none"
-              type="text"
-              placeholder="Enter le nom d'auteur"
-            />
-            <label for="Genre" class="mb-2 block text-sm text-shadow-stone-700"
-              >Genre
-            </label>
-            <select
-              id="genrelivre"
-              class="w-80 rounded-lg border border-stone-300 p-2 outline-none"
-            >
-              <option value="text">La Biographie</option>
-              <option value="text">La Romance</option>
-              <option value="text">La Fantasy</option>
-              <option value="text">La Science</option>
-            </select>
-            <label for="calendrier" class="mb-2 block text-sm text-stone-700"
-              >Année
-            </label>
-            <input
-              id="author"
-              class="rounded-lg border border-stone-300 h-10 w-25 p-2 outline-none"
-              type="number"
-              placeholder="2026"
-            />
-            <label for="status" class="mb-2 block text-sm text-stone-700"
-              >status
-            </label>
-            <select id="status" class="rounded-lg border border-stone-300 p-2">
-              <option value="text">to-read</option>
-              <option value="text">reading</option>
-              <option value="text">read</option>
-            </select>
-            <label for="description" class="mb-2 block text-sm text-stone-700"
-              >description
-            </label>
-            <input
-              type="text"
-              class="rounded-lg border border-stone-300 p-2 w-full h-40 outline-none"
-              placeholder="Enter la description de livre"
-            />
-          </div>
-        </section>
+            Enregistrer le livre
+        </button>
+
+    </form>
+
+</section>
+
+<br />
+
+<!-- COLLECTION DES LIVRES -->
+<section class="mt-8">
+      
         <br />
 
         <!----------------- TITRE ET COMPTEUR ----------------->
@@ -175,21 +253,40 @@
           id="empty-state"
           class="rounded-2xl border border-dashed border-stone-400 bg-white px-5 py-12 text-center shadow-xl"
         >
-          <h3 class="text-lg font-bold text-stone-800">
+        <div id=" ">
+          <h3 class="text-lg font-bold text-stone-800" id="livreH3">
             Aucun livre pour le moment
           </h3>
 
           <p class="mt-2 text-sm text-stone-600">
             Ajoutez votre premier livre pour commencer votre collection.
           </p>
+          </div>
         </div>
 
         <!-- LES LIVRES SERONT AFFICHÉS ICI -->
         <div
           id="books-list"
           class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        ></div>
+        >
+        <article >
+          <title id="titleInput"></title>
+
+          <div id="authorInput">
+
+          </div>
+
+          <div id="genreInput"></div>
+
+          <div id="anneInput"></div>
+
+          <div id="statutInput"></div>
+
+          <div id="descriptionInput"></div>
+        </article>
+      </div>
       </section>
+      <script type="module" src="./src/js/app.js"></script>
     </main>
   </body>
 </html>

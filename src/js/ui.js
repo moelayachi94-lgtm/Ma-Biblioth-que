@@ -1,5 +1,6 @@
 import { books } from "./data.js";
 import { saveBooks } from "./storage.js";
+import { sortBooks } from "./functions.js";
 export const showForm = document.getElementById("ajouter-btn");
 const bookForm = document.getElementById("book-form");
 export const form = document.getElementById("form-ajout");
@@ -8,9 +9,28 @@ export const collection = document.getElementById("empty-state");
 export const livre = document.getElementById("books-list");
 const titleError = document.getElementById("title-error");
 const authorError = document.getElementById("author-error");
+const searchInput = document.getElementById("search-input");
+const sortSelect = document.getElementById("sort-select");
+let editingIndex = null;
 
 showForm.addEventListener("click", (e) => {
   form.classList.toggle("hidden");
+});
+searchInput.addEventListener("input", () => {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+
+  const filterBooks = books.filter((book) => {
+    return (
+      book.title.toLowerCase().includes(searchTerm) ||
+      book.author.toLowerCase().includes(searchTerm)
+    );
+  });
+
+  renderbook(filterBooks);
+});
+sortSelect.addEventListener("change", () => {
+  const sortedBooks = sortBooks(books, sortSelect.value);
+  renderbook(sortedBooks);
 });
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -46,19 +66,24 @@ form.addEventListener("submit", (event) => {
     status: status.value,
     description: description.value.trim(),
   };
+  if (editingIndex === null) {
+    books.push(book);
+  } else {
+    books[editingIndex] = book;
+    editingIndex = null;
+  }
 
-  books.push(book);
-  saveBooks(books)
+  saveBooks(books);
   renderbook(books);
   bookForm.reset();
 });
 
-export function renderbook(books) {
+export function renderbook(booksToDisplay) {
   livre.innerHTML = "";
 
-  collection.classList.toggle("hidden", books.length > 0);
+  collection.classList.toggle("hidden", booksToDisplay.length > 0);
 
-  books.forEach((book) => {
+  booksToDisplay.forEach((book) => {
     const article = document.createElement("article");
     article.className =
       "mt-2 rounded-2xl border border-emerald-800 bg-white py-3 px-6 shadow-xl";
@@ -91,8 +116,64 @@ export function renderbook(books) {
     description.className =
       "text-sm text-[#4A463F] mt-4 leading-relaxed line-clamp-3 pl-3";
 
-    article.append(titre, author, genre, anneer, status, description);
+    const editButton = document.createElement("button");
+    editButton.textContent = "Modifier";
+    editButton.type = "button";
+    editButton.dataset.action = "edit";
+    editButton.dataset.index = books.indexOf(book);
+    editButton.className =
+      "rounded-lg bg-emerald-800 px-4 py-2 text-white cursor-pointer";
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Supprimer";
+    removeButton.type = "button";
+    removeButton.dataset.action = "remove";
+    removeButton.dataset.index = books.indexOf(book);
+    removeButton.className =
+      "rounded-lg bg-red-700 px-4 py-2 text-white cursor-pointer";
+
+    const actions = document.createElement("div");
+    actions.className = "mt-4 flex gap-3";
+
+    actions.append(editButton, removeButton);
+    article.append(titre, author, genre, anneer, status, description, actions);
 
     livre.appendChild(article);
   });
 }
+
+livre.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-action]");
+
+  if (!button) return;
+
+  if (button.dataset.action === "remove") {
+    const index = Number(button.dataset.index);
+
+    const confirmation = confirm("Voulez-vous vraiment supprimer ce livre ?");
+
+    if (!confirmation) return;
+
+    books.splice(index, 1);
+
+    saveBooks(books);
+
+    renderbook(books);
+  }
+  if (button.dataset.action === "edit") {
+    const index = Number(button.dataset.index);
+
+    const book = books[index];
+
+    editingIndex = index;
+
+    document.getElementById("title").value = book.title;
+    document.getElementById("author").value = book.author;
+    document.getElementById("year").value = book.year;
+    document.getElementById("genre").value = book.genre;
+    document.getElementById("status").value = book.status;
+    document.getElementById("description").value = book.description;
+
+    form.classList.remove("hidden");
+  }
+});

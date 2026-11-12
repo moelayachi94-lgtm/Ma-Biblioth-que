@@ -4,6 +4,7 @@ import { sortBooks } from "./functions.js";
 export const showForm = document.getElementById("ajouter-btn");
 const bookForm = document.getElementById("book-form");
 export const form = document.getElementById("form-ajout");
+const annuler = document.getElementById("annuler");
 export const saveBook = document.getElementById("submit-button");
 export const collection = document.getElementById("empty-state");
 export const livre = document.getElementById("books-list");
@@ -13,9 +14,15 @@ const searchInput = document.getElementById("search-input");
 const sortSelect = document.getElementById("sort-select");
 let editingIndex = null;
 
-showForm.addEventListener("click", (e) => {
-  form.classList.toggle("hidden");
+showForm.addEventListener("click", () => {
+  form.classList.remove("hidden");
 });
+annuler.addEventListener("click", () => {
+  form.classList.add("hidden");
+});
+saveBook.addEventListener("click", () => {
+  form.classList.add("hidden")
+})
 searchInput.addEventListener("input", () => {
   const searchTerm = searchInput.value.trim().toLowerCase();
 

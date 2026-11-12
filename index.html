@@ -89,172 +89,158 @@
       <br />
 
       <!-- FORMULAIRE D'AJOUT -->
-<section id="form-ajout" class="mt-2 rounded-2xl border border-emerald-800 bg-white p-6 shadow-xl hidden">
+      <section
+        id="form-ajout"
+        class="mt-2 rounded-2xl border border-emerald-800 bg-white p-6 shadow-xl hidden"
+      >
+        <div class="flex justify-between">
+          <div>
+            <h2 class="text-2xl font-bold text-emerald-800">
+              Ajouter votre livre
+            </h2>
+            <p class="mt-2 font-light text-stone-600">
+              Écris les détails de ton livre préféré.
+            </p>
+          </div>
+          <div id="annuler">
+            <p class="text-stone-600 cursor-pointer px-3 py-2">annuler</p>
+          </div>
+        </div>
 
-    <div>
-        <h2 class="text-2xl font-bold text-emerald-800">
-            Ajouter votre livre
-        </h2>
+        <form id="book-form" class="mt-6 space-y-5">
+          <!--------------------------------TITRE & AUTEUR -------------------------------->
 
-        <p class="mt-2 font-light text-stone-600">
-            Écris les détails de ton livre préféré.
-        </p>
-    </div>
-
-    <form id="book-form" class="mt-6 space-y-5">
-
-        <!--------------------------------TITRE & AUTEUR -------------------------------->
-
-        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
             <!-- TITRE -->
             <div>
-                <label for="title" class="mb-2 block text-sm text-stone-700">
-                    Titre 
-                </label>
+              <label for="title" class="mb-2 block text-sm text-stone-700">
+                Titre
+              </label>
 
-                <input
-                    id="title"
-                    name="title"
-                    type="text"
-                    required
-                    placeholder="Entrer le titre"
-                    class="w-full rounded-lg border border-stone-300 px-3 py-2.5 outline-none focus:border-emerald-800"
-                >
-                <p id="title-error" class="text-sm font-light text-red-600"></p>
+              <input
+                id="title"
+                name="title"
+                type="text"
+                required
+                placeholder="Entrer le titre"
+                class="w-full rounded-lg border border-stone-300 px-3 py-2.5 outline-none focus:border-emerald-800"
+              />
+              <p id="title-error" class="text-sm font-light text-red-600"></p>
             </div>
 
             <!-- AUTEUR -->
             <div>
-                <label for="author" class="mb-2 block text-sm text-stone-700">
-                    Auteur 
-                </label>
+              <label for="author" class="mb-2 block text-sm text-stone-700">
+                Auteur
+              </label>
 
-                <input
-                    id="author"
-                    name="author"
-                    type="text"
-                    required
-                    placeholder="Entrer le nom d'auteur"
-                    class="w-full rounded-lg border border-stone-300 px-3 py-2.5 outline-none focus:border-emerald-800"
-                >
-                <p id="author-error" class="text-sm font-light text-red-600"></p>
+              <input
+                id="author"
+                name="author"
+                type="text"
+                required
+                placeholder="Entrer le nom d'auteur"
+                class="w-full rounded-lg border border-stone-300 px-3 py-2.5 outline-none focus:border-emerald-800"
+              />
+              <p id="author-error" class="text-sm font-light text-red-600"></p>
             </div>
+          </div>
 
-        </div>
-
-
-        <!-- LIGNE 2 : GENRE + ANNÉE + STATUT -->
-        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-
+          <!-- LIGNE 2 : GENRE + ANNÉE + STATUT -->
+          <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
             <!-- GENRE -->
             <div>
-                <label for="genre" class="mb-2 block text-sm text-stone-700">
-                    Genre
-                </label>
+              <label for="genre" class="mb-2 block text-sm text-stone-700">
+                Genre
+              </label>
 
-                <select
-                    id="genre"
-                    name="genre"
-                    class="w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 outline-none focus:border-emerald-800"
-                >
-                    <option value="biography">La Biographie</option>
-                    <option value="romance">La Romance</option>
-                    <option value="fantasy">La Fantasy</option>
-                    <option value="science-fiction">La Science</option>
-                    <option value="other">Autre</option>
-                </select>
+              <select
+                id="genre"
+                name="genre"
+                class="w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 outline-none focus:border-emerald-800"
+              >
+                <option value="biography">La Biographie</option>
+                <option value="romance">La Romance</option>
+                <option value="fantasy">La Fantasy</option>
+                <option value="science-fiction">La Science</option>
+                <option value="other">Autre</option>
+              </select>
             </div>
 
             <!-- ANNÉE -->
             <div>
-                <label for="year" class="mb-2 block text-sm text-stone-700">
-                    Année
-                </label>
+              <label for="year" class="mb-2 block text-sm text-stone-700">
+                Année
+              </label>
 
-                <input
-                    id="year"
-                    name="year"
-                    type="number"
-                    step="1"
-                    placeholder="Ex. 2020"
-                    class="w-full rounded-lg border border-stone-300 px-3 py-2.5 outline-none focus:border-emerald-800"
-                >
+              <input
+                id="year"
+                name="year"
+                type="number"
+                step="1"
+                placeholder="Ex. 2020"
+                class="w-full rounded-lg border border-stone-300 px-3 py-2.5 outline-none focus:border-emerald-800"
+              />
             </div>
 
             <!-- STATUT -->
             <div>
-                <label for="status" class="mb-2 block text-sm text-stone-700">
-                    Statut
-                </label>
+              <label for="status" class="mb-2 block text-sm text-stone-700">
+                Statut
+              </label>
 
-                <select
-                    id="status"
-                    name="status"
-                    class="w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 outline-none focus:border-emerald-800"
-                >
-                    <option value="to-read">To read</option>
-                    <option value="reading">Reading</option>
-                    <option value="read">Read</option>
-                </select>
+              <select
+                id="status"
+                name="status"
+                class="w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 outline-none focus:border-emerald-800"
+              >
+                <option value="to-read">To read</option>
+                <option value="reading">Reading</option>
+                <option value="read">Read</option>
+              </select>
             </div>
+          </div>
 
-        </div>
-
-
-        <!-- LIGNE 3 : DESCRIPTION -->
-        <div>
+          <!-- LIGNE 3 : DESCRIPTION -->
+          <div>
             <label for="description" class="mb-2 block text-sm text-stone-700">
-                Description
+              Description
             </label>
 
             <textarea
-                id="description"
-                name="description"
-                rows="4"
-                placeholder="Entrer la description du livre"
-                class="w-full resize-y rounded-lg border border-stone-300 p-3 outline-none focus:border-emerald-800"
+              id="description"
+              name="description"
+              rows="4"
+              placeholder="Entrer la description du livre"
+              class="w-full resize-y rounded-lg border border-stone-300 p-3 outline-none focus:border-emerald-800"
             ></textarea>
-        </div>
+          </div>
 
-
-        <!-- BOUTON -->
-        <button
+          <!-- BOUTON -->
+          <button
             id="submit-button"
             type="submit"
             class="rounded-full bg-emerald-800 px-6 py-3 font-semibold text-white hover:bg-emerald-900 cursor-pointer"
-        >
+          >
             Enregistrer le livre
-        </button>
+          </button>
+        </form>
+      </section>
 
-    </form>
+      <br />
 
-</section>
-
-<br />
-
-<!-- COLLECTION DES LIVRES -->
-<section class="mt-8">
-      
+      <!-- COLLECTION DES LIVRES -->
+      <section class="mt-8">
         <br />
 
         <!----------------- TITRE ET COMPTEUR ----------------->
 
         <div id="collection" class="flex items-center justify-between">
           <h2 class="text-2xl font-bold mb-5">Ma collection</h2>
-          <p
-            id="books-count"
-            class="rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-900 mb-5"
-          >
-            0 livre
-          </p>
         </div>
 
         <!-- MESSAGE SI AUCUN LIVRE -->
-        <div
-          id="empty-state"
-          class="rounded-2xl px-5 py-12 text-center"
-        >
+        <div id="empty-state" class="rounded-2xl px-5 py-12 text-center">
           <h3 class="text-lg font-bold text-stone-800">
             Aucun livre pour le moment
           </h3>
